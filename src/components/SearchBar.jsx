@@ -1,14 +1,22 @@
-import { Box, Input } from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
+import Search from "../assets/searchengin.svg";
 
-export default function SearchBar (props) {
+export default function SearchBar(props) {
+  const [searchValue, setSearchValue] = useState(props.searchWord);
 
-    const [searchValue, setSearchValue] = useState(props.searchWord)
 
-
-    return (
-        <Box>
-            <Input onKeyDown={(e) => props.getWord(e)} onChange={(e) =>props.getValue(e)}  placeholder='any word' />
-        </Box>
-    )
+  return (
+    <Box>
+      <InputGroup
+      >
+        <InputRightElement pointerEvents='none' children='🔍' />
+        <Input
+        onKeyDown={(e) => props.getWord(e)}
+        onChange={(e) => props.getValue(e)}
+        placeholder="any word"
+        />
+        </InputGroup>
+    </Box>
+  );
 }
