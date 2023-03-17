@@ -29,8 +29,7 @@ function App() {
     }
   }
 
-  console.log(word.length > 0);
-  console.log(word);
+  // console.log(word);
 
   return (
     <Container
