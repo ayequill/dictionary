@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
-import { Container, extendTheme } from "@chakra-ui/react";
+import Word from "./components/Word";
+import { Container } from "@chakra-ui/react";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
@@ -10,30 +11,26 @@ function App() {
 
   function getSearchValue(e) {
     const target = e.target;
-    if (target.value.length > 0){
+    if (target.value.length > 0) {
       setSearchValue(target.value);
     }
   }
-  // const {data} = axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchValue}`)
-  // .then(res => res.data)
-  // .catch(error => console.log(error))
-  
-  // console.log(data)
 
-  useEffect(()=> {
-    getWord
-  }, [searchValue])
-  
-  console.log(word)
-  
+  useEffect(() => {
+    getWord;
+  }, [searchValue]);
 
   function getWord(e) {
     if (e.key === "Enter" && searchValue.length > 0) {
-      axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchValue}`)
-      .then(res => setWord(res.data) )
-      .catch(error => console.log(error))
+      axios
+        .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchValue}`)
+        .then((res) => setWord(res.data[0]))
+        .catch((error) => console.log(error));
     }
   }
+
+  console.log(word.length > 0);
+  console.log(word);
 
   return (
     <Container
@@ -48,6 +45,7 @@ function App() {
         getWord={getWord}
         searchWord={searchValue}
       />
+      {Object.keys(word).length > 0 && <Word word={word} />}
     </Container>
   );
 }
