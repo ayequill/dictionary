@@ -35,7 +35,6 @@ function App() {
     <Container
       w={[480, 600, 1400]}
       maxW="100%"
-      border="1px solid black"
       minH={"100vh"}
     >
       <Header />
