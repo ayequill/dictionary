@@ -1,4 +1,4 @@
-import { Box, Button, Text, List, ListItem, Flex } from "@chakra-ui/react";
+import { Box, Button, Text, List, ListItem, UnorderedList } from "@chakra-ui/react";
 import Play from "../assets/play-solid.svg";
 
 export default function Word({ word }) {
@@ -30,11 +30,11 @@ export default function Word({ word }) {
          justifyContent="space-between"
           p="0.4em 0.4em"
           alignItems='center'>
-          <Box>
-            <Text fontSize="1.8rem" fontWeight="black">
+          <Box py='1.2em'>
+            <Text fontSize="2rem" fontWeight="black">
               {word.word}
             </Text>
-            <Text>
+            <Text color='purple.400'>
               {word.phonetic ? word.phonetic : word.phonetics[0].text}
             </Text>
           </Box>
@@ -51,14 +51,14 @@ export default function Word({ word }) {
         </Box>
         {/* Meaning element goes here */}
         {getMeanings().map((meaning) => (
-          <Box padding="0.2em">
-            <Text>{meaning.partOfSpeech}</Text>
-            <Text>Meaning</Text>
-            <List>
+          <Box py={3} px={1} boxShadow='sm' borderRadius='md'>
+            <Text fontStyle='italic' mb={3} >{meaning.partOfSpeech}</Text>
+            <Text opacity='0.4' mb='6'>Meaning</Text>
+            <UnorderedList pl={5}>
               {meaning.definitions.map((def) => (
-                <ListItem>{def.definition}</ListItem>
+                <ListItem py={1}>{def.definition}</ListItem>
               ))}
-            </List>
+            </UnorderedList>
           </Box>
         ))}
       </Box>
