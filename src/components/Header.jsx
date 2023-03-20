@@ -1,11 +1,12 @@
-import { Box, Image } from '@chakra-ui/react'
+import {  Image, Switch, Flex, useColorMode } from '@chakra-ui/react'
+import { MoonIcon } from '@chakra-ui/icons'
 import book from '../assets/book-solid.svg'
 
 export default function Header () {
+    const {colorMode, toggleColorMode} = useColorMode()
     return (
         <>
-        <Box p={'0.5em'}
-        boxShadow='0px 1px #f5f5f5'
+        <Flex justifyContent='space-between' px={1} py={5}
         >
             <Image 
             src={book} 
@@ -13,7 +14,11 @@ export default function Header () {
             w='1.5em'
             >
             </Image>
-        </Box>
+            <Flex gap={1.5}>
+            <Switch size='md' onChange={toggleColorMode}/>
+            <MoonIcon boxSize={5} />
+            </Flex>
+        </Flex>
         </>
     )
 }

@@ -2,6 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import App from './App'
+const config = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
+
+// const bg = useColorModeValue('gray.50', 'blackAlpha.800')
+
 
 const theme = extendTheme({
   styles: {
@@ -20,6 +27,7 @@ const theme = extendTheme({
       },
     },
   },
+  config
 })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
