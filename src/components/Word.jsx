@@ -2,12 +2,13 @@ import {
   Box,
   Button,
   Text,
-  List,
+  // List,
   ListItem,
   UnorderedList,
   useColorModeValue,
 } from "@chakra-ui/react";
-import Play from "../assets/play-solid.svg";
+import { nanoid } from "nanoid";
+// import Play from "../assets/play-solid.svg";
 
 
 
@@ -25,7 +26,7 @@ const getMeanings = (wordArray) => {
 
  function Word({ word }) {
   console.log(typeof word);
-  const color = useColorModeValue("blackAlpha.800", "orange.500");
+  const color = useColorModeValue("blackAlpha.800", "purple.700");
 
   function click(e) {}
 
@@ -68,7 +69,7 @@ const Meanings = ({word,color}) => {
  return (
   <>
   {word.map((meaning) => (
-          <Box py={3} px={1} boxShadow="sm" borderRadius="md">
+          <Box key={nanoid()} py={3} px={1} boxShadow="sm" borderRadius="md">
             <Text fontStyle="italic" mb={3}>
               {meaning.partOfSpeech}
             </Text>
@@ -77,7 +78,7 @@ const Meanings = ({word,color}) => {
             </Text>
             <UnorderedList pl={5}>
               {meaning.definitions.map((def) => (
-                <ListItem py={1} color={color} >{def.definition}</ListItem>
+                <ListItem key={nanoid()} py={1} color={color} >{def.definition}</ListItem>
               ))}
             </UnorderedList>
           </Box>
