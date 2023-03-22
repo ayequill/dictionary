@@ -39,19 +39,11 @@ function App() {
 
   function getWord(e) {
     if (e.key === "Enter") {
-      // axios
-      //   .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchValue}`)
-      //   .then((res) => {
-      //     setWord(res.data[0])
-      //   })
-      //   .catch((error) => console.log(error));
-
-      // if(isSuccess) setWord(data[0])
-      // console.log(data[0])
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
       }, 2000);
+      e.target.blur()
     }
   }
 
