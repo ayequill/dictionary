@@ -9,24 +9,25 @@ import {
 } from "@chakra-ui/react";
 import Play from "../assets/play-solid.svg";
 
-export default function Word({ word }) {
-  // console.log(word);
+
+
+const getMeanings = (wordArray) => {
+  const meanings = [];
+  wordArray.meanings.map((mean) =>
+    meanings.push({
+      partOfSpeech: mean.partOfSpeech,
+      definitions: mean.definitions,
+    })
+  );
+  return meanings;
+};
+
+
+ function Word({ word }) {
+  console.log(typeof word);
+  const color = useColorModeValue("blackAlpha.800", "orange.500");
 
   function click(e) {}
-
-  // console.log(word);
-
-  const getMeanings = () => {
-    const meanings = [];
-    word.meanings.map((mean) =>
-      meanings.push({
-        partOfSpeech: mean.partOfSpeech,
-        definitions: mean.definitions,
-      })
-    );
-    return meanings;
-  };
-  const color = useColorModeValue("blackAlpha.800", "whiteAlpha.500");
 
   return (
     <>
@@ -38,7 +39,7 @@ export default function Word({ word }) {
           alignItems="center"
         >
           <Box py="1.2em">
-            <Text fontSize="2rem" fontWeight="black">
+            <Text fontSize="2rem" fontWeight="black" color={color}>
               {word.word}
             </Text>
             <Text color="purple.400">
@@ -56,8 +57,17 @@ export default function Word({ word }) {
             </Button>
           </Box>
         </Box>
-        {/* Meaning element goes here */}
-        {getMeanings().map((meaning) => (
+        <Meanings color={color} word={getMeanings(word)} />
+      </Box>
+    </>
+  );
+}
+
+const Meanings = ({word,color}) => {
+  console.log(word,color)
+ return (
+  <>
+  {word.map((meaning) => (
           <Box py={3} px={1} boxShadow="sm" borderRadius="md">
             <Text fontStyle="italic" mb={3}>
               {meaning.partOfSpeech}
@@ -67,12 +77,14 @@ export default function Word({ word }) {
             </Text>
             <UnorderedList pl={5}>
               {meaning.definitions.map((def) => (
-                <ListItem py={1}>{def.definition}</ListItem>
+                <ListItem py={1} color={color} >{def.definition}</ListItem>
               ))}
             </UnorderedList>
           </Box>
         ))}
-      </Box>
-    </>
-  );
+  </>
+ )
 }
+
+
+export default Word
