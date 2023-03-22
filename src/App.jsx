@@ -8,7 +8,6 @@ import {
   Container,
   Flex,
   Spinner,
-  useBoolean,
   useColorModeValue,
 } from "@chakra-ui/react";
 
@@ -26,7 +25,7 @@ function App() {
   }
 
   useEffect(() => {
-    if (searchValue.length > 1) {
+    if (searchValue.length > 1 && loading) {
       axios
         .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchValue}`)
         .then((res) => {
@@ -35,10 +34,11 @@ function App() {
         })
         .catch((error) => console.log(error));
     }
-  }, [loading]);
+    console.log(searchValue)
+  }, [loading, searchValue]);
 
   function getWord(e) {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.target.id === 'search') {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
@@ -47,7 +47,6 @@ function App() {
     }
   }
 
-  console.log(typeof word);
   const bg = useColorModeValue("gray.50", "blackAlpha.800");
 
   return (
@@ -62,7 +61,6 @@ function App() {
       <SearchBar
         getValue={getSearchValue}
         getWord={getWord}
-        searchWord={searchValue}
       />
       {loading && (
         <Flex
@@ -76,12 +74,9 @@ function App() {
           <Spinner size="xl" />
         </Flex>
       )}
-      {/* {!loading && Object.keys(word).length > 0 && <Word word={word} />} */}
       {success && !loading && <Word word={word} />}
     </Container>
   );
 }
 
 export default App;
-
-// transform=' translate(-50%, -50%)'
