@@ -1,34 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import App from './App'
-const config = {
-  initialColorMode: 'light',
-  useSystemColorMode: false,
-}
-
-// const bg = useColorModeValue('gray.50', 'blackAlpha.800')
-
-
-const theme = extendTheme({
-  styles: {
-    global: {
-      // styles for the `body`
-      body: {
-        bg: 'gray.50',
-        color: 'blackAlpha.800',
-      },
-      // styles for the `a`
-      a: {
-        color: 'teal.500',
-        _hover: {
-          textDecoration: 'underline',
-        },
-      },
-    },
-  },
-  config
-})
+import {theme} from './chakra.theme'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
