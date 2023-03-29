@@ -2,15 +2,12 @@ import {
   Box,
   Button,
   Text,
-  // List,
   ListItem,
   UnorderedList,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
 // import Play from "../assets/play-solid.svg";
-
-
 
 const getMeanings = (wordArray) => {
   const meanings = [];
@@ -23,12 +20,11 @@ const getMeanings = (wordArray) => {
   return meanings;
 };
 
-
- function Word({ word }) {
-  console.log(typeof word);
+function Word({ word }) {
+  const audioUrl = word.phonetics[0].audio ? word.phonetics[0].audio : "";
   const color = useColorModeValue("blackAlpha.800", "purple.700");
 
-  function click(e) {}
+  const wordAudio = new Audio(audioUrl);
 
   return (
     <>
@@ -48,14 +44,7 @@ const getMeanings = (wordArray) => {
             </Text>
           </Box>
           <Box>
-            <Button>
-              <audio onCanPlay={(e) => click(e)}>
-                <source
-                  src={word.phonetics[0].audio ? word.phonetics[0].audio : ""}
-                  type="audio/mpeg"
-                />
-              </audio>
-            </Button>
+            <Button onClick={() => wordAudio.play()} />
           </Box>
         </Box>
         <Meanings color={color} word={getMeanings(word)} />
@@ -64,28 +53,28 @@ const getMeanings = (wordArray) => {
   );
 }
 
-const Meanings = ({word,color}) => {
-  console.log(word,color)
- return (
-  <>
-  {word.map((meaning) => (
-          <Box key={nanoid()} py={3} px={1} boxShadow="sm" borderRadius="md">
-            <Text fontStyle="italic" mb={3}>
-              {meaning.partOfSpeech}
-            </Text>
-            <Text opacity="0.4" mb="6">
-              Meaning
-            </Text>
-            <UnorderedList pl={5}>
-              {meaning.definitions.map((def) => (
-                <ListItem key={nanoid()} py={1} color={color} >{def.definition}</ListItem>
-              ))}
-            </UnorderedList>
-          </Box>
-        ))}
-  </>
- )
-}
+const Meanings = ({ word, color }) => {
+  return (
+    <>
+      {word.map((meaning) => (
+        <Box key={nanoid()} py={3} px={1} boxShadow="sm" borderRadius="md">
+          <Text fontStyle="italic" mb={3}>
+            {meaning.partOfSpeech}
+          </Text>
+          <Text opacity="0.4" mb="6">
+            Meaning
+          </Text>
+          <UnorderedList pl={5}>
+            {meaning.definitions.map((def) => (
+              <ListItem key={nanoid()} py={1} color={color}>
+                {def.definition}
+              </ListItem>
+            ))}
+          </UnorderedList>
+        </Box>
+      ))}
+    </>
+  );
+};
 
-
-export default Word
+export default Word;
