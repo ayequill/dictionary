@@ -1,4 +1,6 @@
 import { Box, Input, InputGroup, InputRightElement, useColorModeValue } from "@chakra-ui/react";
+import { SearchIcon } from '@chakra-ui/icons'
+
 // import { useState } from "react";
 // import Search from "../assets/searchengin.svg";
 
@@ -11,11 +13,11 @@ export default function SearchBar({getWord, getValue}) {
     <Box py='1em'>
       <InputGroup
       >
-        <InputRightElement id="search" onClick={(e) => getWord(e)} pointerEvents='auto' children='🔍' />
+        <InputRightElement id="search" onClick={(e) => getWord(e)} pointerEvents='auto' children={<SearchIcon color='purple.400' />} />
         <Input
         onKeyDown={(e) => getWord(e)}
         onChange={(e) => getValue(e)}
-        placeholder="any word"
+        placeholder="Search"
         color={color}
         />
         </InputGroup>

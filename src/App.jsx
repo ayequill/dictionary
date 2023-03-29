@@ -16,6 +16,11 @@ function App() {
   const [word, setWord] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [loader, setLoader] = useState(false)
+
+  setTimeout(()=>{
+      setLoader(false)
+  }, 3000)
 
   function getSearchValue(e) {
     const target = e.target;
@@ -34,7 +39,6 @@ function App() {
         })
         .catch((error) => console.log(error));
     }
-    console.log(searchValue)
   }, [loading, searchValue]);
 
   function getWord(e) {
