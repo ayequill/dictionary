@@ -1,12 +1,13 @@
 import {
   Box,
-  Button,
+  IconButton,
   Text,
   ListItem,
   UnorderedList,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
+import { FaPlay } from 'react-icons/fa';
 // import Play from "../assets/play-solid.svg";
 
 const getMeanings = (wordArray) => {
@@ -22,7 +23,7 @@ const getMeanings = (wordArray) => {
 
 function Word({ word }) {
   const audioUrl = word.phonetics[0].audio ? word.phonetics[0].audio : "";
-  const color = useColorModeValue("blackAlpha.800", "purple.700");
+  const color = useColorModeValue("blackAlpha.800", "whiteAlpha.700");
 
   const wordAudio = new Audio(audioUrl);
 
@@ -44,7 +45,7 @@ function Word({ word }) {
             </Text>
           </Box>
           <Box>
-            <Button onClick={() => wordAudio.play()} />
+            <IconButton onClick={() => wordAudio.play()} size='lg' color='purple.500' icon={<FaPlay/>} />
           </Box>
         </Box>
         <Meanings color={color} word={getMeanings(word)} />
@@ -58,10 +59,10 @@ const Meanings = ({ word, color }) => {
     <>
       {word.map((meaning) => (
         <Box key={nanoid()} py={3} px={1} boxShadow="sm" borderRadius="md">
-          <Text fontStyle="italic" mb={3}>
+          <Text fontStyle="italic" mb={3} color={color}>
             {meaning.partOfSpeech}
           </Text>
-          <Text opacity="0.4" mb="6">
+          <Text opacity="0.4" mb="6" color={color}>
             Meaning
           </Text>
           <UnorderedList pl={5}>

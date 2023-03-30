@@ -16,6 +16,7 @@ function App() {
   const [word, setWord] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [loader, setLoader] = useState(false)
 
   setTimeout(()=>{
