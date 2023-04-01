@@ -5,9 +5,10 @@ import {
   ListItem,
   UnorderedList,
   useColorModeValue,
+  Flex,
 } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay } from "react-icons/fa";
 // import Play from "../assets/play-solid.svg";
 
 const getMeanings = (wordArray) => {
@@ -23,9 +24,10 @@ const getMeanings = (wordArray) => {
 
 function Word({ word }) {
   const audioUrl = word.phonetics[0].audio ? word.phonetics[0].audio : "";
-  const color = useColorModeValue("blackAlpha.800", "whiteAlpha.700");
+  const color = useColorModeValue("blackAlpha.800", "whiteAlpha.900");
 
   const wordAudio = new Audio(audioUrl);
+  // console.log(word);
 
   return (
     <>
@@ -45,16 +47,25 @@ function Word({ word }) {
             </Text>
           </Box>
           <Box>
-            <IconButton onClick={() => wordAudio.play()} size='lg' color='purple.500' icon={<FaPlay/>} />
+            <IconButton
+              onClick={() => wordAudio.play()}
+              size="lg"
+              color="purple.500"
+              icon={<FaPlay />}
+            />
           </Box>
         </Box>
         <Meanings color={color} word={getMeanings(word)} />
+        <Text fontStyle="italic" color={color} mt={10}>
+          {word.sourceUrls[0]}
+        </Text>
       </Box>
     </>
   );
 }
 
 const Meanings = ({ word, color }) => {
+  console.log(word);
   return (
     <>
       {word.map((meaning) => (
@@ -72,6 +83,16 @@ const Meanings = ({ word, color }) => {
               </ListItem>
             ))}
           </UnorderedList>
+          <Flex gap={5} py={5}>
+            <Text opacity="0.4" mb="4" color={color}>Synonyms</Text>
+            <Flex gap={3}>
+              {meaning.definitions.map((mean) => {
+                return mean.synonyms.map((word) => {
+                  return <Text color="purple.400">{word}</Text>;
+                });
+              })}
+            </Flex>
+          </Flex>
         </Box>
       ))}
     </>

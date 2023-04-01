@@ -1,8 +1,6 @@
 import { Box, Input, InputGroup, InputRightElement, useColorModeValue } from "@chakra-ui/react";
 import { SearchIcon } from '@chakra-ui/icons'
 
-// import { useState } from "react";
-// import Search from "../assets/searchengin.svg";
 
 export default function SearchBar({getWord, getValue}) {
 
