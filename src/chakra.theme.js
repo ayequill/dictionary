@@ -23,7 +23,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 const config = {
     initialColorMode: 'light',
-    useSystemColorMode: false,
+    useSystemColorMode: true,
   }
 
 
