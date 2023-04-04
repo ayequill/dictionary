@@ -13,7 +13,7 @@
     <a href="https://github.com/ayequill/dictionary"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://github.com/ayequill/dictionary">View Demo</a>
+    <a href="https://dictionary-pink.vercel.app/">View Demo</a>
     .
     <a href="https://github.com/ayequill/dictionary/issues">Report Bug</a>
     .
