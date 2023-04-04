@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import Word from "./components/Word";
+import Footer from "./components/Footer";
 
 import {
   Container,
@@ -61,6 +62,8 @@ function App() {
       minH={"100vh"}
       bg={bg}
       position="relative"
+      display='flex'
+      flexDir='column'
     >
       <Header />
       <SearchBar
@@ -80,6 +83,7 @@ function App() {
         </Flex>
       )}
       {success && !loading && <Word word={word} />}
+      <Footer />
     </Container>
   );
 }
